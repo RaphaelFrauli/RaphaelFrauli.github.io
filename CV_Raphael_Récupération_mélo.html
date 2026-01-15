@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raphaël Frauli</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="favicon-128.png">
+
+  <meta name="description"
+    content="Site vitrine de Raphaël Frauli – futur administrateur systèmes & réseaux, orienté cybersécurité. CV, parcours, projets et coordonnées." />
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #111827;
+      /* gris anthracite */
+      --card: #111827;
+      --primary: #f97316;
+      /* orange pas trop flashy */
+      --primary-soft: rgba(249, 115, 22, 0.14);
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border: #1f2937;
+      --accent: #fbbf24;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.85);
+      --max-width: 960px;
+      --transition-fast: 0.2s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #050608 50%, #050608 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0 3rem;
+      scroll-margin-top: 6rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(5, 6, 8, 0.96), rgba(5, 6, 8, 0.8), transparent);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.7);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.25rem;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      /* léger arrondi */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      box-shadow: none;
+      flex-shrink: 0;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .brand-role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.90rem;
+    }
+
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform 0.15s ease-out;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(17, 24, 39, 0.85);
+      border-color: rgba(31, 41, 55, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1.1rem;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #0b1120 !important;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.5);
+      border: none !important;
+    }
+
+    .nav-cta:hover {
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+      transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      border-radius: 10px;
+      padding: 0.4rem 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding-top: 3.75rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .badge-dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title span {
+      display: inline-block;
+      background: linear-gradient(135deg, #fed7aa, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      max-width: 36rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.3rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55, 65, 81, 0.85);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform 0.15s ease-out, border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      border: none;
+      color: #020617;
+      font-weight: 600;
+      box-shadow: 0 16px 40px rgba(249, 115, 22, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.92);
+      transform: translateY(-1px);
+      border-color: rgba(75, 85, 99, 0.95);
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      flex-wrap: nowrap;
+    }
+
+    @media (max-width: 600px) {
+      .hero-meta {
+        flex-wrap: wrap;
+      }
+    }
+
+    .hero-meta-pill {
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-pill);
+      border: 1px dashed rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      white-space: nowrap;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      padding: 1.3rem 1.2rem;
+      background: radial-gradient(circle at 0 0, rgba(249, 115, 22, 0.22), transparent 45%), #050608;
+      border: 1px solid rgba(120, 53, 15, 0.9);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 78px;
+      /* Ajustable : entre 70 et 85px selon ton goût */
+      height: 78px;
+      overflow: hidden;
+      border-radius: 50%;
+      /* Pour garder le style "photo de profil" */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      /* Supprime le rond orange */
+      flex-shrink: 0;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Pas d’étirement, rendu propre */
+    }
+
+
+    .hero-card-text h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-card-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.25rem;
+    }
+
+    .hero-tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(120, 53, 15, 0.8);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-muted);
+    }
+
+    /* Cards */
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 1.6rem;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.85);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+    }
+
+    #interests .cards-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--text-muted);
+    }
+
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.4rem;
+      font-size: 0.82rem;
+    }
+
+    .stack-item {
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      color: var(--text-muted);
+    }
+
+    .timeline {
+      border-left: 1px dashed rgba(55, 65, 81, 0.85);
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.2rem;
+      top: 0.25rem;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.25);
+    }
+
+    .timeline-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .timeline-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .list {
+      list-style: none;
+      font-size: 0.87rem;
+      color: var(--text-muted);
+    }
+
+    .list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .list li::before {
+      content: "•";
+      color: var(--primary);
+      margin-top: 0.05rem;
+      font-size: 0.9rem;
+    }
+
+    #interests .list li strong {
+      white-space: nowrap;
+    }
+
+    #interests .list {
+      font-size: 0.83rem;
+    }
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+    }
+
+    .tag {
+      padding: 0.22rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-muted);
+    }
+
+    .tag--highlight {
+      border-color: rgba(249, 115, 22, 0.85);
+      color: #fed7aa;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 1.5rem;
+    }
+
+    .project {
+      padding: 1.1rem 1.2rem;
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--border);
+    }
+
+    .project-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .project-tag {
+      padding: 0.18rem 0.5rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--text-muted);
+    }
+
+    /* Contact */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.7rem;
+      align-items: center;
+    }
+
+    .contact-card {
+      border-radius: 20px;
+      padding: 1.4rem 1.4rem 1.2rem;
+      background: radial-gradient(circle at 0 0, rgba(249, 115, 22, 0.18), transparent 50%), rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(249, 115, 22, 0.5);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      border-radius: 999px;
+      padding: 0.55rem 0.8rem 0.55rem 0.9rem;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-label {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .contact-value {
+      font-weight: 500;
+      font-size: 0.86rem;
+      word-break: break-all;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .pill-button {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform 0.15s ease-out;
+      white-space: nowrap;
+    }
+
+    .pill-button:hover {
+      background: rgba(15, 23, 42, 0.92);
+      border-color: rgba(75, 85, 99, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .pill-dot {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .footer {
+      padding: 1.8rem 0 2.5rem;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 840px) {
+
+      .hero-grid,
+      .cards-grid,
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 2.3rem;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        height: auto;
+        padding: 0.65rem 0;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .nav {
+        display: none;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin-top: 0.75rem;
+      }
+
+      .nav.nav-open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        margin-left: auto;
+      }
+
+      section {
+        padding-top: 3.5rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-title {
+        font-size: 1.85rem;
+      }
+
+      .hero-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact-line {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-logo">
+            <img src="logo_main.png" alt="Logo Raphaël Frauli">
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">Raphaël Frauli</div>
+          </div>
+        </div>
+        <button class="nav-toggle" type="button" onclick="toggleNav()">Menu</button>
+        <nav class="nav" id="mainNav">
+          <a href="#presentation">Présentation</a>
+          <a href="#skills">Compétences</a>
+          <a href="#journey">Parcours</a>
+          <a href="#projects">Projets</a>
+          <a href="#interests">Centres d'intérêt</a>
+          <a href="#contact" class="nav-cta">Me contacter</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Disponible pour immédiatement pour un travail
+            </div>
+            <h1 class="hero-title">
+              Futur <span>Administrateur Systèmes & Réseaux</span>
+            </h1>
+            <p class="hero-subtitle">
+              Passionné d’informatique et de nouvelles technologies, j’ai commencé en autodidacte avant de suivre des
+              formations
+              pour structurer mes compétences. Aujourd’hui, je recherche un stage pour mettre ce savoir en pratique dans
+              une équipe et continuer à monter en compétence sur des environnements concrets.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Proposer un entretien</a>
+              <!-- Remplace # par le lien de ton CV PDF hébergé -->
+              <a href="https://dorfa.fr/CV%20PH%C3%89LIPPEAU%20Malo.pdf" class="btn btn-ghost" target="_blank"
+                rel="noopener" class="pill-dot">Télécharger mon CV</a>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-meta-pill">Basé à Pouillé-les-Coteaux (44) – mobile</div>
+              <div class="hero-meta-pill">Projet de déménagement sur Bordeaux à la suite de la formation</div>
+              <div class="hero-meta-pill">Stage admin systèmes & réseaux / cyber – 10 semaines</div>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Résumé rapide">
+            <div class="avatar">
+              <img src="logo_main.png">
+            </div>
+
+            <div class="hero-card-text">
+              <h3>Raphaël Frauli</h3>
+              <p>Support N1/N2 & futur administrateur systèmes & réseaux</p>
+              <div class="hero-tags">
+                <span class="hero-tag">Support technique N1/N2</span>
+                <span class="hero-tag">Systèmes & Réseaux</span>
+                <span class="hero-tag">Docker & Debian (projets persos)</span>
+                <span class="hero-tag">Proxmox / Mikrotik (Moji)</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- PRÉSENTATION -->
+      <section id="presentation">
+        <div class="container">
+          <h2 class="section-title">
+            <span>01</span>
+            Présentation
+          </h2>
+          <p class="section-subtitle">
+            Un rapide aperçu de mon profil, de ma façon de travailler et de ce que je recherche aujourd’hui.
+          </p>
+
+          <div class="cards-grid">
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">À propos de moi</h3>
+                <span class="chip">Profil</span>
+              </div>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.8rem;">
+                Passionné par le numérique depuis plusieurs années, j’ai commencé en
+                autodidacte (montage de PC, dépannage pour les proches, recherche de panne) avant de suivre
+                des formations dédiées. Mon objectif : évoluer vers l’administration systèmes & réseaux, avec un vrai
+                volet cybersécurité, dans un environnement professionnel stimulant.
+              </p>
+              <ul class="list">
+                <li>À l’aise avec le support utilisateur, l’analyse d’incident et la recherche de solution.</li>
+                <li>Habitué à documenter, suivre les tickets et travailler avec des procédures.</li>
+                <li>Curieux, logique et rigoureux, avec une vraie culture “terrain” grâce à mes expériences variées.
+                </li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Ce que je recherche actuellement</h3>
+                <span class="chip">Stage 2026</span>
+              </div>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.8rem;">
+                Je recherche un stage d’<strong>administration systèmes & réseaux</strong>, idéalement avec une
+                dimension
+                <strong>sécurité / cybersécurité</strong>, du <strong>30 mars au 12 juin 2026</strong>, afin d’appliquer
+                mes compétences dans un contexte de production et de valider mon parcours de formation.
+              </p>
+              <ul class="list">
+                <li>Environnements Windows Server et/ou Linux (Debian, etc.).</li>
+                <li>Gestion d’utilisateurs, AD, GPO simples, sauvegardes, supervision de base.</li>
+                <li>Réseau : adressage IP, DNS, DHCP, configuration d’équipements et bonnes pratiques de sécurité.</li>
+              </ul>
+              <div class="tags-row">
+                <span class="tag tag--highlight">Stage conventionné – 10 semaines</span>
+                <span class="tag">Intérêt marqué pour la cybersécurité</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPÉTENCES -->
+      <section id="skills">
+        <div class="container">
+          <h2 class="section-title">
+            <span>02</span>
+            Compétences techniques
+          </h2>
+          <p class="section-subtitle">
+            Une vue synthétique de mes compétences actuelles, issues à la fois de mes expériences pro et de mes projets
+            personnels.
+          </p>
+
+          <div class="cards-grid">
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Support & systèmes</h3>
+                <span class="chip">Cœur de métier</span>
+              </div>
+              <ul class="list">
+                <li>Support technique N1/N2 : diagnostic, résolution d’incident, prise en main à
+                  distance.</li>
+                <li>Assistance utilisateurs (matériel, logiciels, réseau, Microsoft 365).</li>
+                <li>Installation & maintenance de postes de travail (Windows 7/8/10/11, macOS).</li>
+                <li>Notions d’Active Directory : gestion de comptes, groupes, GPO simples.</li>
+                <li>Paramétrage réseau de base : IP, DNS, DHCP, imprimantes & copieurs réseau.</li>
+                <li>Gestion des tickets : ServiceNow, GLPI, Zammad…</li>
+              </ul>
+              <div class="stack-list">
+                <span class="stack-item">Windows 7/10/11</span>
+                <span class="stack-item">Windows Server / AD</span>
+                <span class="stack-item">Microsoft 365</span>
+                <span class="stack-item">GLPI / ServiceNow / Zammad</span>
+                <span class="stack-item">TeamViewer / AnyDesk</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Réseaux, virtualisation & outils</h3>
+                <span class="chip">En progression</span>
+              </div>
+              <ul class="list">
+                <li>Supervision & maintenance de serveurs et de parcs informatiques.</li>
+                <li>Virtualisation : VirtualBox, VMware, Proxmox (première expérience en prod).</li>
+                <li>Outils et équipements réseau : Winbox, Mikrotik, téléphonie (Centile, 3CX).</li>
+                <li>Déploiement de matériel chez les clients et en datacenter.</li>
+                <li>En cours de montée en compétence sur Debian, Docker & scripts d’automatisation.</li>
+                <li>Création d'un site web à l'aide de l'IA pour decouvrir les bases HTML</li>
+              </ul>
+              <div class="stack-list">
+                <span class="stack-item">Proxmox</span>
+                <span class="stack-item">Mikrotik / Winbox</span>
+                <span class="stack-item">Debian 12</span>
+                <span class="stack-item">Docker (projets persos)</span>
+                <span class="stack-item">PowerShell (début)</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARCOURS -->
+      <section id="journey">
+        <div class="container">
+          <h2 class="section-title">
+            <span>03</span>
+            Parcours
+          </h2>
+          <p class="section-subtitle">
+            Mon évolution entre autoformation, formations spécialisées et expériences professionnelles.
+          </p>
+
+          <div class="cards-grid">
+            <!-- Formation -->
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Formation</h3>
+                <span class="chip">Informatique & technique</span>
+              </div>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-title">AIS – Administrateur d’Infrastructure Sécurisée (option cybersécurité)
+                  </div>
+                  <div class="timeline-meta">École O’Clock • Oct. 2025 – Juin 2026</div>
+                  <div class="timeline-desc">
+                    Parcours orienté administration systèmes & réseaux et cybersécurité : mise en place,
+                    sécurisation et supervision d’infrastructures, avec beaucoup de pratique (labs, projets).
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-title">TAI – Technicien Assistance Informatique</div>
+                  <div class="timeline-meta">C Format Pro Conseil • Sept. 2021 – Mai 2022</div>
+                  <div class="timeline-desc">
+                    Formation centrée sur le support utilisateur, le diagnostic de pannes, l’installation de postes
+                    et les bases réseaux & systèmes, pour intervenir efficacement auprès d’un public varié.
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-title">Autodidacte – bases de l’informatique</div>
+                  <div class="timeline-meta">Avant / en parallèle des formations</div>
+                  <div class="timeline-desc">
+                    Apprentissage en autodidacte des bases de l’informatique et de la recherche de panne :
+                    montage d’ordinateurs, dépannage pour particuliers, compréhension des composants et des systèmes.
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-title">CAP & BAC PRO Mécanicien Automobile</div>
+                  <div class="timeline-meta">GARAC • Sept. 2015 – Juil. 2018</div>
+                  <div class="timeline-desc">
+                    Formation technique exigeante qui m’a appris la rigueur, le diagnostic, le respect des procédures
+                    et le travail en équipe – des compétences que je transpose aujourd’hui à l’informatique.
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Expériences -->
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Expériences professionnelles</h3>
+                <span class="chip">Support & terrain</span>
+              </div>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-title">Technicien Confirmé Photocopieur Itinérant – KMCL</div>
+                  <div class="timeline-meta">Mars 2025 – Juil. 2025</div>
+                  <div class="timeline-desc">
+                    Mise en service et dépannage de copieurs réseau, configuration IP/DNS, changement de pièces de tout
+                    type, interventions chez les clients.
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-title">Technicien Support Niveau 2 – Moji</div>
+                  <div class="timeline-meta">Mai 2024 – Fév. 2025</div>
+                  <div class="timeline-desc">
+                    Support client N2 à distance et sur site, supervision / maintenance de serveurs et parcs
+                    informatiques, utilisation de Proxmox, Winbox, Mikrotik, déploiement de matériel chez les clients
+                    et en datacenter.
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-title">Installateur Photocopieur Itinérant – KMCL</div>
+                  <div class="timeline-meta">Juil. 2023 – Janv. 2024</div>
+                  <div class="timeline-desc">
+                    Mise en service de copieurs réseau, clonage de données, interventions chez les clients.
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-title">Technicien Support Niveau 1 – Helpline</div>
+                  <div class="timeline-meta">Juin 2022 – Juin 2023</div>
+                  <div class="timeline-desc">
+                    Support utilisateur N1, ticketing sur ServiceNow, assistance à distance, résolution d’incidents,
+                    gestion d’Active Directory et déploiement de logiciels à distance.
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJETS -->
+      <section id="projects">
+        <div class="container">
+          <h2 class="section-title">
+            <span>04</span>
+            Projets & réalisations
+          </h2>
+          <p class="section-subtitle">
+            Quelques projets personnels qui illustrent ma manière de travailler, ma curiosité technique et mon goût du
+            défi.
+          </p>
+
+          <div class="projects-grid">
+            <article class="project">
+              <h3 class="project-title">Hébergement de serveurs de jeux dédiés</h3>
+              <div class="project-meta">Projet personnel – Debian 12 & Docker</div>
+              <p class="project-desc">
+                Mise en place d'un serveur de jeu dédié sous <strong>Debian 12</strong>, avec utilisation de
+                <strong>Docker</strong> pour isoler les services. Gestion des ports, des sauvegardes, des mises à jour
+                et du suivi de performance. Objectif : proposer un environnement stable et facilement reproductible
+                pour des sessions de jeu en quelques clics via un panel automatisé (Panel AMP).
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Debian 12</span>
+                <span class="project-tag">Docker</span>
+                <span class="project-tag">Réseau</span>
+                <span class="project-tag">Auto-hébergement</span>
+              </div>
+            </article>
+
+            <article class="project">
+              <h3 class="project-title">Restauration d’une MG ZR 160</h3>
+              <div class="project-meta">Projet technique long terme</div>
+              <p class="project-desc">
+                Projet de restauration et d’optimisation d’une <strong>MG ZR 160</strong> : suivi complet de l’état du
+                véhicule, planification des travaux, coordination avec des spécialistes, gestion des coûts et
+                des priorités techniques. Ce projet met en avant ma capacité à gérer un sujet complexe sur la durée,
+                à suivre les interventions et à travailler avec méthode.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Gestion de projet</span>
+                <span class="project-tag">Technique & diagnostic</span>
+                <span class="project-tag">Planification long terme</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CENTRES D'INTÉRÊT -->
+      <section id="interests">
+        <div class="container">
+          <h2 class="section-title">
+            <span>05</span>
+            Centres d’intérêt
+          </h2>
+          <p class="section-subtitle">
+            Ce qui m’anime en dehors du travail, et qui influence aussi ma façon de penser la technique et les projets.
+          </p>
+
+          <div class="cards-grid">
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Ce qui me passionne</h3>
+              </div>
+              <ul class="list">
+                <li>
+                  <strong>Bricolage</strong> : Conception et fabrication sur mesure pour des projets,
+                  notamment autour de l’automobile.
+                </li>
+                <li>
+                  <strong>Automobile & mécanique</strong> : Projet personnel de restauration d’une
+                  MG ZR 160, avec suivi technique, planification et gestion des interventions.
+                </li>
+                <li>
+                  <strong>Jeux vidéo</strong> : Jeux compétitifs en équipe et hébergement de serveurs
+                  dédiés, qui nourrissent mon intérêt pour l’infra et les performances réseau.
+                </li>
+                <li>
+                  <strong>Musique</strong> : DJing amateur & création de sets électroniques,
+                  avec un focus sur le mix technique et la qualité sonore.
+                </li>
+              </ul>
+              <div class="tags-row">
+                <span class="tag">Bricolage & projets techniques</span>
+                <span class="tag">Automobile / MG ZR 160</span>
+                <span class="tag">Jeux vidéo & serveurs dédiés</span>
+                <span class="tag">Musique & DJing</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="container">
+          <h2 class="section-title">
+            <span>06</span>
+            Me contacter
+          </h2>
+          <p class="section-subtitle">
+            Intéressé(e) par mon profil ou envie d’en savoir plus ?
+            N’hésitez pas à me contacter, je réponds rapidement.
+          </p>
+
+          <div class="contact-grid">
+            <article class="contact-card">
+              <h3 style="font-size:1rem; margin-bottom:0.5rem;">Coordonnées</h3>
+              <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:0.9rem;">
+                Disponible pour un stage d’<strong>administration systèmes & réseaux / infrastructure sécurisée</strong>
+                du <strong>30 mars au 12 juin 2026</strong>.
+              </p>
+
+              <div class="contact-line">
+                <div>
+                  <div class="contact-label">Email</div>
+                  <div class="contact-value">malophelippeau@gmail.com</div>
+                </div>
+                <a href="mailto:malophelippeau@gmail.com" class="pill-button">
+                  <span class="pill-dot"></span>
+                  Envoyer un email
+                </a>
+              </div>
+
+              <div class="contact-line">
+                <div>
+                  <div class="contact-label">Téléphone</div>
+                  <div class="contact-value">06 17 11 74 64</div>
+                </div>
+                <span style="font-size:0.78rem; color:var(--text-muted);">
+                  Joignable en journée.
+                </span>
+              </div>
+
+              <div class="contact-line">
+                <div>
+                  <div class="contact-label">LinkedIn</div>
+                  <div class="contact-value">linkedin.com/in/malo-phelippeau/</div>
+                </div>
+                <a href="https://www.linkedin.com/in/malo-phelippeau/" target="_blank" rel="noopener"
+                  class="pill-button">
+                  <span class="pill-dot"></span>
+                  Voir le profil
+                </a>
+              </div>
+
+              <div class="contact-actions">
+                <!-- Remplacer # par ton lien vers le CV -->
+                <a href="#" class="pill-button">
+                  <span class="pill-dot"></span>
+                  Télécharger mon CV (PDF)
+                </a>
+              </div>
+            </article>
+
+            <div>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.8rem;">
+                Pourquoi travailler avec moi ?
+              </p>
+              <ul class="list">
+                <li>Une expérience concrète en support N1/N2 et en environnement de production.</li>
+                <li>Une vraie curiosité technique, autant du côté systèmes & réseaux que cybersécurité.</li>
+                <li>Une façon de travailler structurée : checklists, suivi des tickets et des projets.</li>
+              </ul>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.9rem;">
+                Je serais ravi d’échanger avec vous pour vous présenter plus en détail mon parcours et mes projets
+                (serveurs de jeux, MG ZR 160).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> – Raphaël Frauli. Tous droits réservés.</div>
+        <div class="footer-links">
+          <a href="#presentation">Présentation</a>
+          <a href="#skills">Compétences</a>
+          <a href="#journey">Parcours</a>
+          <a href="#projects">Projets</a>
+          <a href="#interests">Centres d'intérêt</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // année auto
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // menu mobile
+    function toggleNav() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('nav-open');
+    }
+  </script>
+</body>
+
+</html>
