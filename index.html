@@ -439,6 +439,49 @@
       margin-top: 0.4rem;
     }
 
+    /* Skill icon cards */
+    .skill-icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      min-width: 90px;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+
+    .skill-icon-card:hover {
+      background: rgba(79, 70, 229, 0.12);
+      border-color: rgba(129, 140, 248, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.2);
+    }
+
+    .skill-icon-card img,
+    .skill-icon-card svg {
+      transition: transform 0.25s ease;
+    }
+
+    .skill-icon-card:hover img,
+    .skill-icon-card:hover svg {
+      transform: scale(1.15);
+    }
+
+    .skill-icon-card span {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .skill-icon-card:hover span {
+      color: #fff;
+    }
 
     footer {
       text-align: center;
@@ -500,6 +543,11 @@
       .shell {
         padding: 0 0.8rem;
       }
+
+      .skill-icon-card {
+        min-width: 75px;
+        padding: 0.8rem 0.6rem;
+      }
     }
   </style>
 </head>
@@ -536,7 +584,7 @@
         <div>
           <div class="hero-pills">
             <div class="hero-pill">Disponible immédiatement</div>
-            <div class="hero-pill blue">En reconversion professionnelle</div>
+            <div class="hero-pill blue">En recherche d'un contrat de professionnalisation</div>
           </div>
           <h1 class="hero-title"><span>Administrateur systèmes & réseaux</span></h1>
           <p class="hero-quote">
@@ -545,7 +593,7 @@
           </p>
           <div class="hero-actions">
             <a href="#contact" class="nav-cta">Me contacter</a>
-            <a href="CV_RAPHAEL.pdf" target="_blank" class="nav-cta"
+            <a href="CV_RAPHAEL_FRAULI_2026_Alternance_Mewo_compresse.PDF" target="_blank" class="nav-cta"
               style="padding: 0.5rem 1.2rem; text-decoration: none; font-size: 0.86rem; border-color: rgba(173, 167, 167, 0.1);">
               Télécharger mon CV</a>
           </div>
@@ -564,13 +612,13 @@
             <h3 style="margin:0;">À propos de moi</h3>
             <br>
             <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-card);">
-              Passionné d’informatique depuis l’adolescence, j’ai grandi entre les jeux vidéo, les mangas et le montage/
+              Passionné d'informatique depuis l'adolescence, j'ai grandi entre les jeux vidéo, les mangas et le montage/
               démontage de mes propres PC.
-              Cette curiosité m’a naturellement ramené vers l’IT après quelques années dans le domaine du bâtiment
+              Cette curiosité m'a naturellement ramené vers l'IT après quelques années dans le domaine du bâtiment
               <br><br>
-              Aujourd’hui en reconversion professionnelle, je me spécialise dans l’administration systèmes et réseaux
+              Aujourd'hui en reconversion professionnelle, je me spécialise dans l'administration systèmes et réseaux
               grâce à la formation TSSR.
-              J’ai construit un homelab complet (Proxmox, TrueNAS, pfSense, AD, Zabbix…) pour apprendre en conditions
+              J'ai construit un homelab complet (Proxmox, TrueNAS, pfSense, AD, Zabbix…) pour apprendre en conditions
               réelles, comprendre en profondeur comment fonctionnent les infrastructures
               <br><br>
               Très curieux de nature , j'ai appris à être autonome par mes experiences passées , j'apprends vite surtout
@@ -612,46 +660,264 @@
       </article>
     </section>
 
-    <!-- 02 EXPERTISE -->
+    <!-- 02 EXPERTISE - Icônes de compétences -->
     <section id="skills">
       <div class="section-header">
         <h2 class="section-kicker-badge">Expertise</h2>
       </div>
       <article class="section-card">
-        <div class="grid-2">
-          <!-- Card 1 : Systèmes -->
-          <div class="panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h3 style="margin:0;">Support & systèmes</h3>
-              <span class="hero-pill orange" style="margin:0;">En progression</span>
-            </div>
-            <ul class="list">
-              <li>Support technique: diagnostic, résolution d’incident, prise en main à distance.</li>
-              <li>Installation & maintenance de postes de travail (Windows 7/8/10/11).</li>
-              <li>Active Directory : gestion de comptes, groupes, GPO simples.</li>
-              <li>Déploiement de matériel chez les clients (ENI, ordinateurs)</li>
-              <li>Notion de câblage de baie informatique</li>
-            </ul>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; padding: 1rem 0;">
+
+          <!-- Windows -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows11/windows11-original.svg"
+              alt="Windows" width="36" height="36">
+            <span>Windows</span>
           </div>
-          <!-- Card 2 : Réseaux -->
-          <div class="panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h3 style="margin:0;">Réseaux, virtualisation</h3>
-              <span class="hero-pill orange" style="margin:0;">En progression</span>
-            </div>
-            <ul class="list">
-              <li>Virtualisation : VirtualBox, VMware, Proxmox, ESXi, Hyper-V</li>
-              <li>Paramétrage réseau : IP, DNS, DHCP, VLAN, routage</li>
-              <li>Stockage centralisé : SMB, NFS, iSCSI</li>
-              <li>Sauvegarde et restauration de données</li>
-              <li>Scripting et automatisation (PowerShell, Bash)</li>
-              <li>Conteneurisation avec Docker</li>
-            </ul>
+
+          <!-- Linux -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux"
+              width="36" height="36">
+            <span>Linux</span>
           </div>
+
+          <!-- Active Directory -->
+          <div class="skill-icon-card">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke="#818cf8" stroke-width="1.5" fill="rgba(79,70,229,0.15)" />
+              <path d="M12 8a2 2 0 100-4 2 2 0 000 4z" fill="#818cf8" />
+              <path d="M12 8v3M8 14h8M8 14l-2 4M16 14l2 4M12 11l-4 3M12 11l4 3" stroke="#818cf8" stroke-width="1.2"
+                stroke-linecap="round" />
+            </svg>
+            <span>Active Directory</span>
+          </div>
+
+          <!-- VMware -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.simpleicons.org/vmware/white" alt="VMware" width="36" height="36">
+            <span>VMware</span>
+          </div>
+
+          <!-- Proxmox -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.simpleicons.org/proxmox/E57000" alt="Proxmox" width="36" height="36">
+            <span>Proxmox</span>
+          </div>
+
+          <!-- pfSense -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.simpleicons.org/pfsense/212121" alt="pfSense" width="36" height="36"
+              style="filter: invert(1) brightness(0.85);">
+            <span>pfSense</span>
+          </div>
+
+          <!-- PowerShell -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/powershell/powershell-original.svg"
+              alt="PowerShell" width="36" height="36">
+            <span>PowerShell</span>
+          </div>
+
+          <!-- Bash -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Bash"
+              width="36" height="36" style="filter: invert(1) brightness(0.85);">
+            <span>Bash</span>
+          </div>
+
+          <!-- Cisco -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="Cisco" width="36" height="36">
+            <span>Cisco</span>
+          </div>
+
+          <!-- Veeam -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.simpleicons.org/veeam/00B336" alt="Veeam" width="36" height="36">
+            <span>Veeam</span>
+          </div>
+
+          <!-- Zabbix -->
+          <div class="skill-icon-card">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="3" width="20" height="16" rx="2" stroke="#ef4444" stroke-width="1.5"
+                fill="rgba(239,68,68,0.1)" />
+              <polyline points="5,15 8,10 11,13 14,7 17,11 19,8" stroke="#ef4444" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <circle cx="14" cy="7" r="1.5" fill="#ef4444" />
+              <line x1="6" y1="21" x2="18" y2="21" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            <span>Zabbix</span>
+          </div>
+
+          <!-- TrueNAS -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.simpleicons.org/truenas/0095D5" alt="TrueNAS" width="36" height="36">
+            <span>TrueNAS</span>
+          </div>
+
+          <!-- GLPI -->
+          <div class="skill-icon-card">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="#60a5fa" stroke-width="1.5"
+                fill="rgba(96,165,250,0.1)" />
+              <path d="M3 9h18M7 13h4M7 16h6" stroke="#60a5fa" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+            <span>GLPI</span>
+          </div>
+
+          <!-- Hyper-V -->
+          <div class="skill-icon-card">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="16" rx="2" stroke="#00adef" stroke-width="1.5"
+                fill="rgba(0,173,239,0.1)" />
+              <path d="M8 8v8M16 8v8M8 12h8" stroke="#00adef" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <span>Hyper-V</span>
+          </div>
+
+          <!-- Office 365 -->
+          <div class="skill-icon-card">
+            <img src="https://img.icons8.com/?size=100&id=37619&format=png&color=000000" alt="Office 365" width="36"
+              height="36">
+            <span>Office 365</span>
+          </div>
+
+          <!-- Guacamole -->
+          <div class="skill-icon-card">
+            <img src="https://cdn.simpleicons.org/apacheguacamole/339933" alt="Guacamole" width="36" height="36">
+            <span>Guacamole</span>
+          </div>
+
+          <!-- SSH / VPN -->
+          <div class="skill-icon-card">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="8" width="8" height="8" rx="2" stroke="#34d399" stroke-width="1.5"
+                fill="rgba(52,211,153,0.1)" />
+              <rect x="14" y="8" width="8" height="8" rx="2" stroke="#34d399" stroke-width="1.5"
+                fill="rgba(52,211,153,0.1)" />
+              <path d="M10 12h4" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 2" />
+              <path d="M12 5v3M12 16v3" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" />
+              <circle cx="12" cy="4" r="1.5" fill="#34d399" />
+              <circle cx="12" cy="20" r="1.5" fill="#34d399" />
+            </svg>
+            <span>SSH / VPN</span>
+          </div>
+
         </div>
       </article>
     </section>
 
+
+
+
+    <!-- 04 PARCOURS -->
+    <section id="journey">
+      <div class="section-header">
+        <h2 class="section-kicker-badge">Parcours</h2>
+      </div>
+      <article class="section-card">
+        <div class="grid-2">
+          <!-- Card 1 : Expériences -->
+          <div>
+            <h4>Expériences Professionnelles</h4>
+            <br>
+            <div class="timeline">
+              <!-- Expérience 1 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2025</span>
+                <div class="timeline-company">Stage Informatiques</div>
+                <ul
+                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
+                  <li>Déploiement de nouveaux postes via PXE</li>
+                  <li>Intervention clientèle sur place, dépannage réseaux</li>
+                  <li>Installation et mise en service d'écran numérique interactif</li>
+                  <li>Câblage de petite baie informatique</li>
+                </ul>
+              </div>
+              <!-- Expérience 2 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2019 - 2024</span>
+                <div class="timeline-company">Technicien Bureau d'études</div>
+                <ul
+                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
+                  <li>Conception technique et réalisation de plans de rotation complexes en coffrage de dalles et
+                    étaiement grande hauteur</li>
+                  <li>Calculs de charges et résolution de problématiques techniques sur chantier</li>
+                  <li>Optimisation des listes de matériels et logistique d'approvisionnement</li>
+                </ul>
+              </div>
+              <!-- Expérience 3 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2018 - 2019</span>
+                <div class="timeline-company">Chiffreur métreur</div>
+                <ul
+                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
+                  <li>Gestion d'un chiffre d'affaires annuel de 3M€</li>
+                  <li>Suivi du budget main d'œuvre et coût matériel chantier.</li>
+                  <li>Réalisation des métrés et mise en place d'un tableau pour le suivi des facturations.</li>
+                  <li>Réalisation de plans Autocad, Revit pour le suivi d'avancement de chantier.</li>
+                </ul>
+              </div>
+              <!-- Expérience 4 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2014 - 2016</span>
+                <div class="timeline-company">Magasinier réceptionniste</div>
+                <ul
+                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
+                  <li>Gestion des flux logistiques et préparation de commandes</li>
+                  <li>Contrôle de conformité et gestion de stock magasin</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 : Formations -->
+          <div>
+            <h4>Formations</h4>
+            <br>
+            <div class="timeline">
+              <!-- Formation 1 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2026-2027</span>
+                <div class="timeline-company">Bachelor à venir - Administrateur systèmes, réseaux et cybersécurité</div>
+                <p class="timeline-description">Mewo – Metz (alternance)</p>
+              </div>
+              <!-- Formation 2 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2025-2026</span>
+                <div class="timeline-company">BTS - Technicien superieur systèmes et réseaux</div>
+                <p class="timeline-description">Oclock.io – Paris (Téléprésentiel)</p>
+              </div>
+              <!-- Formation 3 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2017 - 2018</span>
+                <div class="timeline-company">BTS - Conducteur de travaux </div>
+                <p class="timeline-description">CNAM Lorraine – Metz</p>
+              </div>
+              <!-- Formation 4 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2011 - 2014</span>
+                <div class="timeline-company">BTS - Études et Économie de la Construction</div>
+                <p class="timeline-description">École Chez Soi – Paris (Formation à distance)</p>
+              </div>
+              <!-- Formation 5 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2009 - 2011</span>
+                <div class="timeline-company">Bac Pro - Technicien du Bâtiment Étude et Économie</div>
+                <p class="timeline-description">Lycée Emmanuel Héré – Laxou</p>
+              </div>
+              <!-- Formation 6 -->
+              <div class="timeline-item">
+                <span class="timeline-date">2007 - 2009</span>
+                <div class="timeline-company">BEP - Techniques de l'Architecture et de l'Habitat</div>
+                <p class="timeline-description">Lycée Gustave Eiffel – Talange</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
     <!-- 03 PROJETS -->
     <section id="projects">
       <div class="section-header">
@@ -748,111 +1014,8 @@
       </article>
     </section>
 
-    </section>
 
 
-    <!-- 04 PARCOURS -->
-    <section id="journey">
-      <div class="section-header">
-        <h2 class="section-kicker-badge">Parcours</h2>
-      </div>
-      <article class="section-card">
-        <div class="grid-2">
-          <!-- Card 1 : Expériences -->
-          <div>
-            <h4>Expériences Professionnelles</h4>
-            <br>
-            <div class="timeline">
-              <!-- Expérience 1 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2025</span>
-                <div class="timeline-company">Stage Informatiques</div>
-                <ul
-                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
-                  <li>Déploiement de nouveaux postes via PXE</li>
-                  <li>Intervention clientèle sur place, dépannage réseaux</li>
-                  <li>Installation et mise en service d'écran numérique interactif</li>
-                  <li>Câblage de petite baie informatique</li>
-                </ul>
-              </div>
-              <!-- Expérience 2 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2019 - 2024</span>
-                <div class="timeline-company">Technicien Bureau d’études</div>
-                <ul
-                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
-                  <li>Conception technique et réalisation de plans de rotation complexes en coffrage de dalles et
-                    étaiement grande hauteur</li>
-                  <li>Calculs de charges et résolution de problématiques techniques sur chantier</li>
-                  <li>Optimisation des listes de matériels et logistique d'approvisionnement</li>
-                </ul>
-              </div>
-              <!-- Expérience 3 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2018 - 2019</span>
-                <div class="timeline-company">Chiffreur métreur</div>
-                <ul
-                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
-                  <li>Gestion d'un chiffre d'affaires annuel de 3M€</li>
-                  <li>Suivi du budget main d’œuvre et coût matériel chantier.</li>
-                  <li>Réalisation des métrés et mise en place d’un tableau pour le suivi des facturations.</li>
-                  <li>Réalisation de plans Autocad, Revit pour le suivi d’avancement de chantier.</li>
-                </ul>
-              </div>
-              <!-- Expérience 4 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2014 - 2016</span>
-                <div class="timeline-company">Magasinier réceptionniste</div>
-                <ul
-                  style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5;">
-                  <li>Gestion des flux logistiques et préparation de commandes</li>
-                  <li>Contrôle de conformité et gestion de stock magasin</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- Card 2 : Formations -->
-          <div>
-            <h4>Formations</h4>
-            <br>
-            <div class="timeline">
-              <!-- Formation 1 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2025</span>
-                <div class="timeline-company">Oclock.io – Paris (Téléprésentiel)</div>
-                <p class="timeline-description">Formation Tech supérieurs systèmes et réseaux. <br> Niveau RNCP 5.
-                </p>
-              </div>
-              <!-- Formation 2 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2017 - 2018</span>
-                <div class="timeline-company">CNAM Lorraine – Metz</div>
-                <p class="timeline-description">Formation Conducteur de travaux bâtiments et travaux publics. <br>
-                  Niveau RNCP 5.</p>
-              </div>
-              <!-- Formation 3 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2011 - 2014</span>
-                <div class="timeline-company">École Chez Soi – Paris (Formation à distance)</div>
-                <p class="timeline-description">BTS Études et Économie de la Construction.</p>
-              </div>
-              <!-- Formation 4 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2009 - 2011</span>
-                <div class="timeline-company">Lycée Emmanuel Héré – Laxou</div>
-                <p class="timeline-description">BAC Professionnel Technicien du Bâtiment Etudes et Economie.</p>
-              </div>
-              <!-- Formation 5 -->
-              <div class="timeline-item">
-                <span class="timeline-date">2007 - 2009</span>
-                <div class="timeline-company">Lycée Gustave Eiffel – Talange</div>
-                <p class="timeline-description">BEP Techniques de l’Architecture et de l’Habitat.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-    </section>
 
     <!-- 05 CONTACT -->
     <section id="contact" style="padding-bottom: 4rem;">
