@@ -30,6 +30,26 @@ document.addEventListener("keydown", (event) => {
 });
 matchMedia("(min-width: 768px)").addEventListener("change", () => closeMenu());
 
+const sectionLinks = [...navigation.querySelectorAll("a[href^='#']")];
+const sections = sectionLinks.map((link) => document.querySelector(link.hash));
+let navigationFrame = 0;
+function updateCurrentSection() {
+  navigationFrame = 0;
+  let current = -1;
+  sections.forEach((section, index) => {
+    if (section.getBoundingClientRect().top <= 160) current = index;
+  });
+  sectionLinks.forEach((link, index) => {
+    if (index === current) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+}
+window.addEventListener("scroll", () => {
+  if (!navigationFrame) navigationFrame = requestAnimationFrame(updateCurrentSection);
+}, { passive: true });
+window.addEventListener("resize", updateCurrentSection);
+updateCurrentSection();
+
 const dialog = document.querySelector("#lightbox");
 const boardImage = document.querySelector("#lightbox-image");
 const viewport = document.querySelector("#lightbox-viewport");
@@ -39,21 +59,49 @@ const zoomLevel = document.querySelector("#zoom-level");
 const boardCount = document.querySelector("#board-count");
 const zoomIn = document.querySelector("#zoom-in");
 const zoomOut = document.querySelector("#zoom-out");
+const fullscreenButton = document.querySelector("#lightbox-fullscreen");
 const boardLinks = [...document.querySelectorAll(".board-link[data-board]")];
 let activeIndex = 0;
 let origin = null;
 let scale = 1;
 let fitMode = true;
+let ownsFullscreen = false;
+
+function setExpanded(expanded) {
+  dialog.classList.toggle("is-fullscreen", expanded);
+  fullscreenButton.setAttribute("aria-pressed", String(expanded));
+  fullscreenButton.textContent = expanded ? "Réduire" : "Plein écran";
+}
+fullscreenButton.addEventListener("click", async () => {
+  const expanded = !dialog.classList.contains("is-fullscreen");
+  setExpanded(expanded);
+  if (expanded && !document.fullscreenElement && document.documentElement.requestFullscreen) {
+    try {
+      await document.documentElement.requestFullscreen();
+      ownsFullscreen = true;
+    } catch { /* Le lecteur reste agrandi si le navigateur refuse le plein écran. */ }
+  } else if (!expanded && ownsFullscreen && document.fullscreenElement) {
+    ownsFullscreen = false;
+    try { await document.exitFullscreen(); } catch { /* Aucun blocage du lecteur. */ }
+  }
+});
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement && ownsFullscreen) {
+    ownsFullscreen = false;
+    setExpanded(false);
+  }
+});
 
 function setScale(value, center = true) {
   if (!boardImage.naturalWidth) return;
   const centerX = (viewport.scrollLeft + viewport.clientWidth / 2) / (boardImage.naturalWidth * scale);
   const centerY = (viewport.scrollTop + viewport.clientHeight / 2) / (boardImage.naturalHeight * scale);
-  scale = Math.min(3, Math.max(.1, value));
+  const maximum = 3;
+  scale = Math.min(maximum, Math.max(.1, value));
   dialog.style.setProperty("--image-width", `${Math.round(boardImage.naturalWidth * scale)}px`);
   zoomLevel.value = `${Math.round(scale * 100)} %`;
   zoomOut.disabled = scale <= .1;
-  zoomIn.disabled = scale >= 3;
+  zoomIn.disabled = scale >= maximum;
   if (center) {
     viewport.scrollLeft = centerX * boardImage.naturalWidth * scale - viewport.clientWidth / 2;
     viewport.scrollTop = centerY * boardImage.naturalHeight * scale - viewport.clientHeight / 2;
@@ -97,11 +145,20 @@ document.querySelectorAll("a[data-board]").forEach((link) => {
 document.querySelector("#lightbox-close").addEventListener("click", () => dialog.close());
 dialog.addEventListener("close", () => {
   document.body.classList.remove("modal-open");
+  setExpanded(false);
+  if (ownsFullscreen && document.fullscreenElement) {
+    ownsFullscreen = false;
+    document.exitFullscreen().catch(() => {});
+  }
   if (origin) origin.focus({ preventScroll: true });
 });
 dialog.addEventListener("keydown", (event) => {
+  if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && event.target !== viewport && !event.ctrlKey && !event.altKey && !event.metaKey) {
+    event.preventDefault();
+    showBoard(activeIndex + (event.key === "ArrowLeft" ? -1 : 1));
+  }
   if (event.key !== "Tab") return;
-  const focusable = [...dialog.querySelectorAll("button:not(:disabled), a[href], [tabindex='0']")];
+  const focusable = [...dialog.querySelectorAll("button:not(:disabled), a[href], [tabindex='0']")].filter((element) => !element.hidden);
   const first = focusable[0];
   const last = focusable[focusable.length - 1];
   if (event.shiftKey && document.activeElement === first) {

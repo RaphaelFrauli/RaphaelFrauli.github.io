@@ -6,8 +6,11 @@ Portfolio statique consacré aux études de prix et à l’économie de la const
 
 - `index.html` : contenu, galerie, parcours, coordonnées et modale native.
 - `css/styles.css` : mise en page responsive, typographie, accessibilité.
-- `js/main.js` : menu mobile et lecteur de planches avec zoom.
-- `assets/images/` : huit planches WebP, aperçus de 900 px et image de partage.
+- `js/main.js` : menu mobile, navigation active et lecteur de planches avec zoom, clavier et plein écran.
+- `assets/images/` : huit nouvelles planches de domaines, aperçus de 900 et 520 px et image de partage.
+- `assets/details/` : sept planches de coupe fournies, versions complètes sans perte et aperçus.
+- `docs/verification-planches.md` : contrôle graphique et technique des images, avec erreurs et références.
+- `docs/coupes-inventaire.json` : fichiers sources des coupes, dimensions et empreintes SHA-256.
 - `LogoFavicon.png` : favicon d’origine conservé ; versions optimisées dans `assets/`.
 - `.nojekyll` : publication statique sans traitement Jekyll.
 
@@ -23,11 +26,17 @@ Le dépôt `RaphaelFrauli.github.io` est prévu pour `https://raphaelfrauli.gith
 
 ## Planches
 
-Les PNG fournis dans le dossier parent sont conservés intacts. Les WebP sont exportés sans recadrage ni retouche, en résolution originale (1491 × 1055) et en aperçu (900 × 637). Le lecteur charge la version originale à l’ouverture ; **100 %** affiche un pixel de l’image par pixel CSS. Le défilement natif permet de parcourir les détails à la souris, au clavier ou au toucher. **Adapter** rétablit la vue complète.
+Les PNG fournis dans les dossiers parents `planches` et `PlanchesCoupes` sont conservés intacts. Les WebP sont exportés sans recadrage ni retouche, en résolution originale (1491 × 1055 pour les domaines, 1448 × 1086 pour les coupes) et en aperçus de 900 et 520 px de large. Les versions complètes des coupes utilisent une compression sans perte, vérifiée pixel par pixel contre les PNG sources.
 
-Pour ajouter une planche, exporter ses deux tailles, ajouter un article dans `.domain-list` et renseigner le titre, le texte, l’alternative et les liens `data-board`. Le lecteur déduit automatiquement l’ordre et le nombre de planches. Sans JavaScript, les liens ouvrent directement les images.
+Le lecteur charge la version complète à l’ouverture ; **100 %** affiche un pixel de l’image par pixel CSS. Le défilement natif permet de parcourir les détails à la souris, au clavier ou au toucher. **Adapter** rétablit la vue complète, **Plein écran** agrandit le lecteur et utilise l’API du navigateur lorsqu’elle est disponible. Les flèches gauche/droite changent de planche, sauf lorsque la zone d’image a le focus : elles servent alors au défilement. Échap ferme le lecteur ; le focus revient au lien initial.
 
-Les familles « Lots techniques » et « Menuiseries, serrurerie et métallerie » ne sont pas des catégories de la galerie. Elles restent visibles à l’intérieur du panorama fourni, préservé tel quel.
+Pour ajouter une planche, exporter ses trois tailles, ajouter un article dans `.domain-list` ou `.detail-list` et renseigner le titre, le texte, l’alternative et les liens `data-board`. Respecter ses dimensions et son ratio propres. Le lecteur déduit automatiquement l’ordre et le nombre de planches. Sans JavaScript, les liens ouvrent directement les images.
+
+Les familles « Lots techniques » et « Menuiseries, serrurerie et métallerie » ne sont pas des catégories de la galerie. Le nouveau panorama fourni présente les six familles retenues et CALAOS.
+
+Les sept coupes comportent encore des erreurs de repère ou des assemblages à préciser. Un volet « Lecture technique : points à vérifier » est disponible sous chaque fiche. Les liens fabricants servent à comparer les systèmes ; ils ne certifient pas les images. Le neuvième PNG général, exemple de sous-détail de prix, n’est pas publié car ses totaux sont incohérents. Le recalcul figure dans le rapport de vérification.
+
+Le titre d’accueil et le nom sont mis en avant. Aucune photographie personnelle n’a été fournie ; aucun portrait artificiel n’a été ajouté.
 
 ## Ajouter de vrais dossiers anonymisés
 
@@ -41,4 +50,4 @@ Ne pas publier de coordonnées de clients, de valeurs confidentielles, de chiffr
 
 ## Vérifications de la refonte
 
-Vérifié le 1er octobre 2026 dans Edge/Chromium : neuf largeurs (320, 360, 375, 390, 430, 768, 1024, 1280 et 1440 px), absence de débordement horizontal, huit images chargées dans leur ratio, liens locaux et ancres, menu mobile, zoom et résolution réelle, focus contenu dans la modale, Escape, fermeture par le fond, retour du focus, blocage du défilement et orientation paysage. Navigation et accès aux images également vérifiés sans JavaScript. Aucune erreur de console. Vérifications syntaxiques JavaScript et `git diff --check` réussies. Aucun build requis.
+Vérification dans Edge/Chromium : neuf largeurs (320, 360, 375, 390, 430, 768, 1024, 1280 et 1440 px), absence de débordement horizontal, quinze images chargées dans leur ratio, liens locaux et ancres, menu mobile, zoom et résolution réelle, plein écran, flèches du clavier, focus contenu dans la modale, Échap, fermeture par le fond, retour du focus, blocage du défilement et orientation paysage. Navigation et accès aux images également contrôlés sans JavaScript. Contrôles de syntaxe JavaScript et `git diff --check` avant publication. Aucun build requis.
