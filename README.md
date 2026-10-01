@@ -4,7 +4,7 @@ Portfolio statique consacré aux études de prix et à l’économie de la const
 
 ## Organisation
 
-- `index.html` : contenu, galerie, parcours, coordonnées et modale native.
+- `index.html` : accueil, panorama, galerie par catégorie, coordonnées et modale native.
 - `css/styles.css` : mise en page responsive, typographie, accessibilité.
 - `js/main.js` : menu mobile, navigation active et lecteur de planches avec zoom, clavier et plein écran.
 - `assets/images/` : huit nouvelles planches de domaines, aperçus de 900 et 520 px et image de partage.
@@ -14,7 +14,7 @@ Portfolio statique consacré aux études de prix et à l’économie de la const
 - `LogoFavicon.png` : favicon d’origine conservé ; versions optimisées dans `assets/`.
 - `.nojekyll` : publication statique sans traitement Jekyll.
 
-Les anciens fichiers restent accessibles sur la branche `GitPageCV`. Aucun code ou élément graphique de l’ancien site n’est repris, sauf le favicon. Les coordonnées et les éléments factuels du parcours proviennent des informations du dépôt.
+Les anciens fichiers restent accessibles sur la branche `GitPageCV`. Aucun code ou élément graphique de l’ancien site n’est repris, sauf le favicon. Les coordonnées proviennent des informations du dépôt.
 
 ## Prévisualisation
 
@@ -30,23 +30,17 @@ Les PNG fournis dans les dossiers parents `planches` et `PlanchesCoupes` sont co
 
 Le lecteur charge la version complète à l’ouverture ; **100 %** affiche un pixel de l’image par pixel CSS. Le défilement natif permet de parcourir les détails à la souris, au clavier ou au toucher. **Adapter** rétablit la vue complète, **Plein écran** agrandit le lecteur et utilise l’API du navigateur lorsqu’elle est disponible. Les flèches gauche/droite changent de planche, sauf lorsque la zone d’image a le focus : elles servent alors au défilement. Échap ferme le lecteur ; le focus revient au lien initial.
 
-Pour ajouter une planche, exporter ses trois tailles, ajouter un article dans `.domain-list` ou `.detail-list` et renseigner le titre, le texte, l’alternative et les liens `data-board`. Respecter ses dimensions et son ratio propres. Le lecteur déduit automatiquement l’ordre et le nombre de planches. Sans JavaScript, les liens ouvrent directement les images.
+La galerie regroupe chaque planche générale et ses coupes dans un même article `.domain-category` : fondation en gros œuvre ; mur enterré, baie ITE et toiture-terrasse en enveloppe ; cloison et faux-plafond en plâtrerie ; sol carrelé en chapes et sols. Les catégories peinture, extérieurs et CALAOS présentent leurs planches générales.
+
+Pour ajouter une planche, exporter ses trois tailles, ajouter une figure dans `.category-boards` de la catégorie correspondante et renseigner l’alternative, le titre du lecteur et le lien `data-board`. Respecter ses dimensions et son ratio propres. Le lecteur déduit automatiquement l’ordre et le nombre de planches. Sans JavaScript, les liens ouvrent directement les images.
 
 Les familles « Lots techniques » et « Menuiseries, serrurerie et métallerie » ne sont pas des catégories de la galerie. Le nouveau panorama fourni présente les six familles retenues et CALAOS.
 
-Les sept coupes comportent encore des erreurs de repère ou des assemblages à préciser. Un volet « Lecture technique : points à vérifier » est disponible sous chaque fiche. Les liens fabricants servent à comparer les systèmes ; ils ne certifient pas les images. Le neuvième PNG général, exemple de sous-détail de prix, n’est pas publié car ses totaux sont incohérents. Le recalcul figure dans le rapport de vérification.
+Les textes descriptifs, les volets de lecture technique et les liens répétés « Voir la planche » ont été retirés de la galerie à la demande de Raphaël. Les images restent des liens accessibles vers le lecteur. Les blocs Méthode et Parcours ont été retirés ; les coordonnées sont regroupées dans un pied de page compact.
+
+Les remarques techniques sont conservées dans `docs/verification-planches.md`. Les sept coupes comportent encore des erreurs de repère ou des assemblages à préciser ; leur intégration ne constitue pas une validation technique. Le neuvième PNG général, exemple de sous-détail de prix, n’est pas publié car ses totaux sont incohérents. Le recalcul figure dans le rapport.
 
 Le titre d’accueil et le nom sont mis en avant. Aucune photographie personnelle n’a été fournie ; aucun portrait artificiel n’a été ajouté.
-
-## Ajouter de vrais dossiers anonymisés
-
-La section `#dossiers` est masquée et le `template#dossier-template` fournit une structure vide : typologie et contexte, mission et lots, méthode et outils, extraits. Pour publier un dossier :
-
-1. Insérer dans `.dossier-list` un article basé sur le template, uniquement avec des données réelles et anonymisées.
-2. Ajouter les extraits autorisés avec dimensions, texte alternatif et légende.
-3. Retirer l’attribut `hidden` de `#dossiers` et ajouter le lien correspondant dans la navigation.
-
-Ne pas publier de coordonnées de clients, de valeurs confidentielles, de chiffres inventés ou de prétentions de réalisation des travaux. Les planches sont des schémas de principe de domaines étudiés, pas des plans d’exécution.
 
 ## Vérifications de la refonte
 

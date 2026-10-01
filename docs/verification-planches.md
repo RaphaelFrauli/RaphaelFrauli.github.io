@@ -43,7 +43,7 @@ Les 10 % sont ici appliqués au coût : il s'agit d'une majoration sur coût. Si
 
 ## Contrôle des sept planches de coupe
 
-Les images sont plus détaillées, mais elles ne peuvent pas être qualifiées de « coupes extrêmement précises sans erreur ». Les erreurs de repérage ci-dessous restent dans les images intégrées. Un accord de publication ne transforme pas une illustration en plan d'exécution validé. Les notes de lecture sont accessibles sous chaque coupe sur le site.
+Les images sont plus détaillées, mais elles ne peuvent pas être qualifiées de « coupes extrêmement précises sans erreur ». Les erreurs de repérage ci-dessous restent dans les images intégrées. Un accord de publication ne transforme pas une illustration en plan d'exécution validé. Les notes de lecture sont conservées dans ce rapport de contrôle ; elles ne figurent plus dans la galerie publique, à la demande de Raphaël.
 
 ### D01 — Fondation en béton armé (`01_33_42-1.png`)
 
