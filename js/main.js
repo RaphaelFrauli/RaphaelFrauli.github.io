@@ -30,6 +30,116 @@ document.addEventListener("keydown", (event) => {
 });
 matchMedia("(min-width: 768px)").addEventListener("change", () => closeMenu());
 
+const gallery = document.querySelector("#domaines");
+const categories = [...gallery.querySelectorAll(".domain-category")];
+const categoryLinks = [...gallery.querySelectorAll(".domain-index a")];
+const boardChoices = new Map();
+const boardTabs = new Map();
+const cutLabels = {
+  "detail-fondation": "Fondation", "detail-mur": "Mur enterré",
+  "detail-facade": "Baie ITE", "detail-toiture": "Toiture-terrasse",
+  "detail-cloison": "Cloison", "detail-plafond": "Faux-plafond",
+  "detail-sol": "Sol carrelé"
+};
+const picker = document.createElement("select");
+picker.id = "category-picker";
+picker.className = "category-picker";
+picker.setAttribute("aria-label", "Choisir un domaine");
+categoryLinks.forEach((link) => {
+  const option = document.createElement("option");
+  option.value = link.hash.slice(1);
+  option.textContent = [...link.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE).map((node) => node.textContent).join("").trim();
+  picker.append(option);
+});
+gallery.querySelector(".gallery-layout").before(picker);
+
+categories.forEach((category) => {
+  const figures = [...category.querySelectorAll(".board-frame")];
+  const tabs = [];
+  if (figures.length > 1) {
+    const list = document.createElement("div");
+    list.className = "board-tabs";
+    list.setAttribute("role", "tablist");
+    list.setAttribute("aria-label", "Planches du domaine");
+    figures.forEach((figure, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.id = `${figure.id}-tab`;
+      button.textContent = index === 0 ? "Vue d’ensemble" : cutLabels[figure.id] || figure.querySelector("[data-title]").dataset.title;
+      button.setAttribute("role", "tab");
+      button.setAttribute("aria-controls", figure.id);
+      figure.setAttribute("role", "tabpanel");
+      figure.setAttribute("aria-labelledby", button.id);
+      button.addEventListener("click", () => {
+        activateCategory(category.id, figure.id);
+        history.replaceState(null, "", `#${index === 0 ? category.id : figure.id}`);
+      });
+      button.addEventListener("keydown", (event) => {
+        let next;
+        if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+        else if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = tabs.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        tabs[next].click();
+        tabs[next].focus();
+      });
+      tabs.push(button);
+      list.append(button);
+    });
+    category.querySelector(".category-boards").before(list);
+  }
+  boardTabs.set(category.id, tabs);
+});
+
+function activateCategory(id, boardId) {
+  const selected = categories.find((category) => category.id === id) || categories[0];
+  categories.forEach((category) => { category.hidden = category !== selected; });
+  categoryLinks.forEach((link) => {
+    if (link.hash === `#${selected.id}`) link.setAttribute("aria-current", "true");
+    else link.removeAttribute("aria-current");
+  });
+  picker.value = selected.id;
+  const figures = [...selected.querySelectorAll(".board-frame")];
+  const requested = figures.find((figure) => figure.id === boardId);
+  const active = requested || figures.find((figure) => figure.id === boardChoices.get(selected.id)) || figures[0];
+  boardChoices.set(selected.id, active.id);
+  figures.forEach((figure, index) => {
+    figure.hidden = figure !== active;
+    const tab = boardTabs.get(selected.id)[index];
+    if (tab) {
+      tab.setAttribute("aria-selected", String(figure === active));
+      tab.tabIndex = figure === active ? 0 : -1;
+    }
+  });
+}
+function followGalleryHash(scroll = false) {
+  const target = document.getElementById(location.hash.slice(1));
+  const category = target?.closest(".domain-category");
+  if (category) {
+    activateCategory(category.id, target.closest(".board-frame")?.id);
+    if (scroll) requestAnimationFrame(() => gallery.scrollIntoView({ block: "start" }));
+  }
+  if (target?.id === "panorama") target.open = true;
+}
+categoryLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    activateCategory(link.hash.slice(1));
+    history.pushState(null, "", link.hash);
+  });
+});
+picker.addEventListener("change", () => {
+  activateCategory(picker.value);
+  history.pushState(null, "", `#${picker.value}`);
+});
+document.querySelector("#panorama").open = matchMedia("(min-width: 951px)").matches;
+activateCategory(categories[0].id);
+followGalleryHash(true);
+window.addEventListener("hashchange", () => followGalleryHash(true));
+
 const sectionLinks = [...navigation.querySelectorAll("a[href^='#']")];
 const sections = sectionLinks.map((link) => document.querySelector(link.hash));
 let navigationFrame = 0;
@@ -61,6 +171,7 @@ const zoomIn = document.querySelector("#zoom-in");
 const zoomOut = document.querySelector("#zoom-out");
 const fullscreenButton = document.querySelector("#lightbox-fullscreen");
 const boardLinks = [...document.querySelectorAll(".board-link[data-board]")];
+let readerBoards = boardLinks;
 let activeIndex = 0;
 let origin = null;
 let scale = 1;
@@ -116,12 +227,14 @@ function fitImage() {
   setScale(Math.min(1, (viewport.clientWidth - 24) / boardImage.naturalWidth, (viewport.clientHeight - 24) / boardImage.naturalHeight), false);
 }
 function showBoard(index) {
-  activeIndex = (index + boardLinks.length) % boardLinks.length;
-  const link = boardLinks[activeIndex];
+  activeIndex = (index + readerBoards.length) % readerBoards.length;
+  const link = readerBoards[activeIndex];
   title.textContent = link.dataset.title;
   boardImage.alt = link.querySelector("img").alt;
   fileLink.href = link.href;
-  boardCount.textContent = `${activeIndex + 1} / ${boardLinks.length}`;
+  boardCount.textContent = `${activeIndex + 1} / ${readerBoards.length}`;
+  document.querySelector("#board-prev").disabled = readerBoards.length < 2;
+  document.querySelector("#board-next").disabled = readerBoards.length < 2;
   fitMode = true;
   boardImage.src = link.href;
   if (boardImage.complete && boardImage.naturalWidth) fitImage();
@@ -135,7 +248,9 @@ document.querySelectorAll("a[data-board]").forEach((link) => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof dialog.showModal !== "function") return;
     event.preventDefault();
     origin = link;
-    activeIndex = boardLinks.findIndex((board) => board.href === link.href);
+    const category = link.closest(".domain-category");
+    readerBoards = category ? [...category.querySelectorAll(".board-link[data-board]")] : [link];
+    activeIndex = readerBoards.findIndex((board) => board.href === link.href);
     dialog.showModal();
     document.body.classList.add("modal-open");
     showBoard(activeIndex);

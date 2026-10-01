@@ -19,8 +19,8 @@
   <meta property="og:image:height" content="849">
   <meta property="og:image:alt" content="Panorama illustré des domaines de chiffrage BTP">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/styles.css?v=3">
-  <script src="js/main.js?v=3" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=4">
+  <script src="js/main.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -32,21 +32,29 @@
     </div>
   </header>
   <main id="contenu">
+    <aside class="deployment-notice container" role="note" aria-label="État du portfolio">
+      <strong>PORTFOLIO EN COURS DE DÉPLOIEMENT !</strong>
+      <p>Les dessins présentés sont en cours de vérification.</p>
+    </aside>
     <section id="accueil" class="hero container" aria-labelledby="hero-title">
-      <p class="hero-name">Raphaël Frauli</p>
+      <div class="hero-intro"><div class="hero-identity"><p class="hero-name">Raphaël Frauli</p>
       <div class="hero-heading"><h1 id="hero-title"><span class="hero-portfolio">Portfolio<span class="title-dot">.</span></span><span class="hero-profession">Économiste<br><em>de la construction</em></span></h1><a class="hero-arrow" href="#domaines"><span class="sr-only">Explorer les domaines</span><span aria-hidden="true">↓</span></a></div>
-    </section>
-    <section id="panorama" class="section panorama container" aria-labelledby="panorama-title">
-      <div class="section-heading"><h2 id="panorama-title">Panorama</h2></div>
+      </div>
+        <details id="panorama" class="panorama-preview" open>
+          <summary>Panorama <span aria-hidden="true">+</span></summary>
       <figure class="board-frame panorama-figure">
         <a class="board-link" data-board href="assets/images/domaines-chiffrage-btp-v2.webp" data-title="Domaines de chiffrage BTP" aria-label="Voir en grand la planche Domaines de chiffrage BTP">
-          <img src="assets/images/domaines-chiffrage-btp-v2.webp" srcset="assets/images/domaines-chiffrage-btp-v2-520.webp 520w, assets/images/domaines-chiffrage-btp-v2-900.webp 900w, assets/images/domaines-chiffrage-btp-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Panorama de chiffrage : structure, enveloppe, second œuvre et aménagements extérieurs, autour d’une coupe axonométrique de bâtiment." loading="lazy" decoding="async">
+          <img src="assets/images/domaines-chiffrage-btp-v2.webp" srcset="assets/images/domaines-chiffrage-btp-v2-520.webp 520w, assets/images/domaines-chiffrage-btp-v2-900.webp 900w, assets/images/domaines-chiffrage-btp-v2.webp 1491w" sizes="(max-width: 950px) 92vw, 420px" width="1491" height="1055" alt="Panorama de chiffrage : structure, enveloppe, second œuvre et aménagements extérieurs, autour d’une coupe axonométrique de bâtiment." loading="eager" decoding="async">
 
         </a>
       </figure>
+        </details>
+      </div>
     </section>
+
     <section id="domaines" class="section domains container" aria-labelledby="domaines-title">
       <div class="section-heading"><h2 id="domaines-title">Domaines</h2></div>
+      <div class="gallery-layout">
       <nav class="domain-index" aria-label="Sommaire des domaines">
         <a href="#gros-oeuvre"><span aria-hidden="true">01</span>Gros œuvre<span aria-hidden="true">↓</span></a>
         <a href="#enveloppe"><span aria-hidden="true">02</span>Isolation &amp; étanchéité<span aria-hidden="true">↓</span></a>
@@ -60,7 +68,7 @@
         <article class="domain-category" id="gros-oeuvre" aria-labelledby="gros-oeuvre-title">
           <div class="category-heading"><span class="category-number" aria-hidden="true">01</span><h3 id="gros-oeuvre-title">Gros œuvre, fondations &amp; maçonnerie</h3></div>
           <div class="category-boards">
-            <figure class="board-frame overview-figure">
+            <figure class="board-frame overview-figure" id="gros-oeuvre-overview">
               <a class="board-link" data-board href="assets/images/gros-oeuvre-fondations-maconnerie-v2.webp" data-title="Gros œuvre, fondations & maçonnerie" aria-label="Voir en grand la planche Gros œuvre, fondations et maçonnerie"><img src="assets/images/gros-oeuvre-fondations-maconnerie-v2-900.webp" srcset="assets/images/gros-oeuvre-fondations-maconnerie-v2-520.webp 520w, assets/images/gros-oeuvre-fondations-maconnerie-v2-900.webp 900w, assets/images/gros-oeuvre-fondations-maconnerie-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Vue d’ensemble illustrée du gros œuvre : fondations, maçonnerie, béton armé, murs et poteaux." loading="lazy" decoding="async"></a>
             </figure>
             <figure class="board-frame detail-sheet" id="detail-fondation">
@@ -71,7 +79,7 @@
         <article class="domain-category" id="enveloppe" aria-labelledby="enveloppe-title">
           <div class="category-heading"><span class="category-number" aria-hidden="true">02</span><h3 id="enveloppe-title">Isolation, façades &amp; étanchéité</h3></div>
           <div class="category-boards">
-            <figure class="board-frame overview-figure">
+            <figure class="board-frame overview-figure" id="enveloppe-overview">
               <a class="board-link" data-board href="assets/images/isolation-facades-etancheite-v2.webp" data-title="Isolation, façades & étanchéité" aria-label="Voir en grand la planche Isolation, façades et étanchéité"><img src="assets/images/isolation-facades-etancheite-v2-900.webp" srcset="assets/images/isolation-facades-etancheite-v2-520.webp 520w, assets/images/isolation-facades-etancheite-v2-900.webp 900w, assets/images/isolation-facades-etancheite-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Schémas de principe de l’enveloppe : isolation, façade, toiture-terrasse, raccord de baie et murs enterrés." loading="lazy" decoding="async"></a>
             </figure>
             <figure class="board-frame detail-sheet" id="detail-mur">
@@ -88,7 +96,7 @@
         <article class="domain-category" id="cloisons" aria-labelledby="cloisons-title">
           <div class="category-heading"><span class="category-number" aria-hidden="true">03</span><h3 id="cloisons-title">Cloisons, plâtrerie &amp; plafonds</h3></div>
           <div class="category-boards">
-            <figure class="board-frame overview-figure">
+            <figure class="board-frame overview-figure" id="cloisons-overview">
               <a class="board-link" data-board href="assets/images/cloisons-platrerie-plafonds-v2.webp" data-title="Cloisons, plâtrerie & plafonds" aria-label="Voir en grand la planche Cloisons, plâtrerie et plafonds"><img src="assets/images/cloisons-platrerie-plafonds-v2-900.webp" srcset="assets/images/cloisons-platrerie-plafonds-v2-520.webp 520w, assets/images/cloisons-platrerie-plafonds-v2-900.webp 900w, assets/images/cloisons-platrerie-plafonds-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Schémas de principe du second œuvre : cloisons, doublages, plafond suspendu, niche et habillage." loading="lazy" decoding="async"></a>
             </figure>
             <figure class="board-frame detail-sheet" id="detail-cloison">
@@ -102,7 +110,7 @@
         <article class="domain-category" id="sols" aria-labelledby="sols-title">
           <div class="category-heading"><span class="category-number" aria-hidden="true">04</span><h3 id="sols-title">Chapes, carrelage &amp; sols</h3></div>
           <div class="category-boards">
-            <figure class="board-frame overview-figure">
+            <figure class="board-frame overview-figure" id="sols-overview">
               <a class="board-link" data-board href="assets/images/chapes-carrelage-sols-v2.webp" data-title="Chapes, carrelage & sols" aria-label="Voir en grand la planche Chapes, carrelage et sols"><img src="assets/images/chapes-carrelage-sols-v2-900.webp" srcset="assets/images/chapes-carrelage-sols-v2-520.webp 520w, assets/images/chapes-carrelage-sols-v2-900.webp 900w, assets/images/chapes-carrelage-sols-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Schémas de principe des revêtements : calepinage, couches de sol, faïence, plinthes et sols souples." loading="lazy" decoding="async"></a>
             </figure>
             <figure class="board-frame detail-sheet" id="detail-sol">
@@ -113,7 +121,7 @@
         <article class="domain-category" id="peinture" aria-labelledby="peinture-title">
           <div class="category-heading"><span class="category-number" aria-hidden="true">05</span><h3 id="peinture-title">Peinture &amp; finitions</h3></div>
           <div class="category-boards">
-            <figure class="board-frame overview-figure">
+            <figure class="board-frame overview-figure" id="peinture-overview">
               <a class="board-link" data-board href="assets/images/peinture-finitions-v2.webp" data-title="Peinture & finitions" aria-label="Voir en grand la planche Peinture et finitions"><img src="assets/images/peinture-finitions-v2-900.webp" srcset="assets/images/peinture-finitions-v2-520.webp 520w, assets/images/peinture-finitions-v2-900.webp 900w, assets/images/peinture-finitions-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Vue d’ensemble illustrée des peintures : préparation des supports, reprises et finitions intérieures." loading="lazy" decoding="async"></a>
             </figure>
           </div>
@@ -121,7 +129,7 @@
         <article class="domain-category" id="exterieurs" aria-labelledby="exterieurs-title">
           <div class="category-heading"><span class="category-number" aria-hidden="true">06</span><h3 id="exterieurs-title">Aménagements extérieurs &amp; VRD</h3></div>
           <div class="category-boards">
-            <figure class="board-frame overview-figure">
+            <figure class="board-frame overview-figure" id="exterieurs-overview">
               <a class="board-link" data-board href="assets/images/amenagements-exterieurs-vrd-v2.webp" data-title="Aménagements extérieurs & VRD" aria-label="Voir en grand la planche Aménagements extérieurs et VRD"><img src="assets/images/amenagements-exterieurs-vrd-v2-900.webp" srcset="assets/images/amenagements-exterieurs-vrd-v2-520.webp 520w, assets/images/amenagements-exterieurs-vrd-v2-900.webp 900w, assets/images/amenagements-exterieurs-vrd-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Schémas de principe des extérieurs : pavés, bordures, terrasses, gabions, caniveaux et drainage." loading="lazy" decoding="async"></a>
             </figure>
           </div>
@@ -129,11 +137,12 @@
         <article class="domain-category" id="calaos" aria-labelledby="calaos-title">
           <div class="category-heading"><span class="category-number" aria-hidden="true">07</span><h3 id="calaos-title">CALAOS — Domotique &amp; automatisation</h3></div>
           <div class="category-boards">
-            <figure class="board-frame overview-figure">
+            <figure class="board-frame overview-figure" id="calaos-overview">
               <a class="board-link" data-board href="assets/images/calaos-domotique-automatisation-v2.webp" data-title="CALAOS — Domotique & automatisation" aria-label="Voir en grand la planche CALAOS, domotique et automatisation"><img src="assets/images/calaos-domotique-automatisation-v2-900.webp" srcset="assets/images/calaos-domotique-automatisation-v2-520.webp 520w, assets/images/calaos-domotique-automatisation-v2-900.webp 900w, assets/images/calaos-domotique-automatisation-v2.webp 1491w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 1399px) 92vw, 1288px" width="1491" height="1055" alt="Architecture domotique de principe : implantation CALAOS, automate et modules WAGO, coffret sur rail DIN, commandes, capteurs, éclairage et volets." loading="lazy" decoding="async"></a>
             </figure>
           </div>
         </article>
+      </div>
       </div>
     </section>
   </main>
