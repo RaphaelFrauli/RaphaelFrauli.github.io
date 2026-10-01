@@ -65,7 +65,9 @@ categories.forEach((category) => {
       const button = document.createElement("button");
       button.type = "button";
       button.id = `${figure.id}-tab`;
-      button.textContent = index === 0 ? "Vue d’ensemble" : cutLabels[figure.id] || figure.querySelector("[data-title]").dataset.title;
+      button.textContent = figure.classList.contains("overview-figure")
+        ? "Vue d’ensemble"
+        : cutLabels[figure.id] || figure.querySelector("[data-title]").dataset.title;
       button.setAttribute("role", "tab");
       button.setAttribute("aria-controls", figure.id);
       figure.setAttribute("role", "tabpanel");
@@ -135,7 +137,7 @@ picker.addEventListener("change", () => {
   activateCategory(picker.value);
   history.pushState(null, "", `#${picker.value}`);
 });
-document.querySelector("#panorama").open = matchMedia("(min-width: 951px)").matches;
+document.querySelector("#panorama").open = false;
 activateCategory(categories[0].id);
 followGalleryHash(true);
 window.addEventListener("hashchange", () => followGalleryHash(true));
